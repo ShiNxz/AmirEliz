@@ -1,7 +1,15 @@
-const Button = (props) => {
+const Button = ({ children, className, outline, type, size, dataAos, dataAosDelay, dataAosOffset, dataAosAnchor, onClick }) => {
+
     return (
-        <button className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" type={props.type}>
-            {props.children}
+        <button data-aos-delay={dataAosDelay || ""} data-aos={dataAos || ""} data-aos-offset={dataAosOffset} data-aos-anchor={dataAosAnchor} className={`inline-block px-5 py-3 text-white font-medium text-xs leading-tight rounded shadow-md focus:shadow-lg focus:outline-none focus:ring-0 hover:shadow-lg active:shadow-lg transition duration-300 ease-in-out ${className ? className : ''}
+                bg-cyan hover:bg-cyan2 border-[1px] border-cyan focus:bg-cyan2
+                ${outline && 'bg-cyan/0 border-[1px] border-cyan text-cyan hover:text-white focus:text-white hover:bg-cyan2 focus:outline-none'}
+                ${size && size === 'sm' && '!px-3 !py-2'}
+            `}
+            type={type}
+            onClick={onClick}
+        >
+            {children}
         </button>
     )
 }

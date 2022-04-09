@@ -3,16 +3,26 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  transition-property: opacity,transform,background,color,box-shadow,height,padding,letter-spacing!important;
+}
+
 html {
   @apply scroll-smooth duration-200
 }
 
 body {
   font-family: 'Rubik', sans-serif;
+  padding-right: 0!important;
+  overflow: overlay;
+}
+
+b {
+  @apply font-semibold
 }
 
 .dark {
-  @apply bg-gray-900 duration-200
+  @apply bg-bg-dark duration-200
 }
 
 a {
@@ -20,6 +30,14 @@ a {
 }
 
 #app {
-  @apply bg-slate-200 dark:bg-gray-900 font-sans
+  @apply bg-slate-200 dark:bg-gray-900 font-sans text-center
   
+}
+
+.rtl {
+  direction: rtl;
+}
+
+.lrt {
+  direction: ltr;
 }

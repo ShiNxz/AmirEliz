@@ -1,28 +1,34 @@
 import './App.scss'
-import Footer from './Components/UI/Footer'
-import NavBar from './Components/UI/Navbar'
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom"
-import Index from './Pages/Index'
-import { useState } from 'react'
-import Show from './Pages/Show'
+import Index from './Home'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
-AOS.init()
+import PageUI from './Components/UI/PageUI'
+import ContextProvider from './Context'
+
+AOS.init({
+  offset: 400,
+  duration: 700,
+})
 
 const App = () => {
-  const [query, setQuery] = useState(false)
 
   return (
     <>
-      <Router>
-      <NavBar search={{query, setQuery}}/>
-        <Routes >
-          <Route path="/" element={<Index search={{query, setQuery}}/>} />
-          <Route path="/show/:id" element={<Show/>} />
-          <Route path="*" element={<Navigate to={`/`}/>} />
-        </Routes>
-        <Footer/>
-      </Router>
+      <ContextProvider>
+        <Router>
+
+          <PageUI>
+
+            <Routes >
+              <Route path="/" element={<Index />} />
+              <Route path="*" element={<Navigate to={`/`} />} />
+            </Routes>
+
+          </PageUI>
+
+        </Router>
+      </ContextProvider>
     </>
   )
 }

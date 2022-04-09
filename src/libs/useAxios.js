@@ -1,14 +1,15 @@
 import axios from 'axios'
 import config from '../config'
 
-const useAxios = async (route, method) => {
+const useAxios = async (route, method = 'GET', data = {}) => {
     method = method || 'GET'
 
     try {
         const fetch = await axios({
             method,
-            url: `${config.axios.baseURI}/${route}`,
-            headers: config.axios.headers
+            url: route.startsWith('http') ? route : `${config.axios.baseURI}/${route}`,
+            headers: config.axios.headers,
+            data
         })
 
         return { success: true, status: fetch.status, data: fetch.data }
