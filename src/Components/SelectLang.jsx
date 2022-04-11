@@ -16,7 +16,7 @@ const SelectLang = () => {
     return (
         <div className="w-40 mx-2">
             <div className="mt-1 relative">
-                <button type="button" onClick={() => setOpen(open => !open)} dir='ltr' className="relative w-full bg-white rounded-md shadow-lg pl-1 pr-5 py-2 cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 text-sm">
+                <button aria-label='language' type="button" onClick={() => setOpen(open => !open)} dir='ltr' className="relative w-full bg-white rounded-md shadow-lg pl-1 pr-5 py-2 cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 text-sm">
                     <span className="flex items-center">
                         <span className="ml-3 block truncate">{ Lang.filter(l => l.identifier === lang)[0].text }</span>
                     </span>

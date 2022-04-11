@@ -1,9 +1,10 @@
 // Images
-import nextil from './Assets/projects/nextil.png'
-import pirateGame from './Assets/projects/pirateGame.png'
-import pug from './Assets/projects/pug.png'
-import startApp from './Assets/projects/startApp.png'
-import tvBrands from './Assets/projects/tvBrands.jpg'
+import nextil from './Assets/projects/nextil.webp'
+import pirateGame from './Assets/projects/pirateGame.webp'
+import pug from './Assets/projects/pug.webp'
+import startApp from './Assets/projects/startApp.webp'
+import amireliz from './Assets/projects/amireliz.webp'
+import tvBrands from './Assets/projects/tvBrands.webp'
 
 const projects = [
     /*
@@ -51,8 +52,21 @@ const projects = [
         image: startApp,
         techs: ['HTML', 'CSS', 'JavaScript', 'Ajax', 'jQuery', 'Bootstrap', 'PHP', 'MySQL'],
         links: {
-            demo: 'https://startapp.org.il',
+            demo: 'https://old.startapp.org.il',
             repository: 'https://github.com/ShiNxz/startapp'
+        }
+    },
+    {
+        title: 'Amir Eliz',
+        description: {
+            "en": 'Landing page with work examples section, about me section, technologies section, and more.',
+            "he": 'דף נחיתה בעל "אודות", עבודות לדוגמה, טכנולוגיות ושפות בשימוש, ועוד.',
+        },
+        image: amireliz,
+        techs: ['React', 'JavaScript', 'Scss', 'Axios', 'Tailwind'],
+        links: {
+            demo: 'https://startapp.org.il',
+            repository: 'https://github.com/ShiNxz/AmirEliz'
         }
     },
     {

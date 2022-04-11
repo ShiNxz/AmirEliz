@@ -45,7 +45,7 @@ const NavBar = () => {
 
                     <div className="-mr-2 flex md:hidden">
                         <div className='inline-flex items-center justify-center'>
-                            <button onClick={() => setMinimize(!minimize)} className="text-white hover:text-gray-300 p-2 rounded-md focus:outline-none">
+                            <button aria-label='darkmode' onClick={() => setMinimize(!minimize)} className="text-white hover:text-gray-300 p-2 rounded-md focus:outline-none">
                                 <svg width="20" height="20" fill="currentColor" className="h-8 w-8" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1664 1344v128q0 26-19 45t-45 19h-1408q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1408q26 0 45 19t19 45zm0-512v128q0 26-19 45t-45 19h-1408q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1408q26 0 45 19t19 45zm0-512v128q0 26-19 45t-45 19h-1408q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1408q26 0 45 19t19 45z"></path>
                                 </svg>
