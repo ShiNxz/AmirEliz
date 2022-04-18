@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from 'react'
-import Lang from "./Lang"
-import useAxios from './libs/useAxios';
+import Lang from './Lang'
+import useAxios from './libs/useAxios'
 
 export const Context = createContext()
 
@@ -14,9 +14,12 @@ const ContextProvider = ({ children }) => {
 
 	useEffect(() => FetchData(), [])
 	
-	
 	const [lang, setLang] = useState(localStorage.getItem("lang") || Lang[0].identifier)
 	const texts = Lang.filter(l => l.identifier === lang)[0].texts
+
+	useEffect(() => {
+		document.documentElement.lang = lang
+	}, [lang])
 
 	document.title = texts.title
 

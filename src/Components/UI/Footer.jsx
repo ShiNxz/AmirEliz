@@ -14,7 +14,7 @@ const Footer = () => {
 
     return (
         <footer className="text-center py-20 bg-cyan2 dark:text-slate-200 shadow-md">
-            <span className="uppercase text-lg text-neutral-900 font-[500] block duration-300 hover:tracking-widest">amir eliz</span>
+            <span className="uppercase text-lg text-neutral-900 font-[500] block duration-300 hover:tracking-[0.2em]">amir eliz</span>
             <div className="text-sm text-neutral-900 my-8 font-light block">
                 {
                     links.map(l => <a className="text-gray-800 block md:inline-block hover:text-gray-900 underline decoration-2 decoration-gray-700/0 hover:decoration-gray-700 duration-300 px-3 py-2 rounded-md text-sm font-medium" key={l.id} href={l.id}>{l.icon ? <FontAwesomeIcon className="mx-2" icon={ l.icon } /> : ''}{texts.links[l.id]}</a>)

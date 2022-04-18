@@ -30,13 +30,13 @@ const Lang = [
                     },
                     {
                         icon: faReact,
-                        num: '20+',
+                        num: '15+',
                         title: 'Technologies',
                         text: 'Languages & Technologies'
                     },
                     {
                         icon: faCheck,
-                        num: '50+',
+                        num: '20+',
                         title: 'Projects done',
                         text: 'Projects'
                     }
@@ -68,12 +68,15 @@ const Lang = [
                     message: 'Message',
                     placeholder: 'Please write the reason for the inquiry, if you want to recieve a price quote please write your website details, website use, and relevant examples.',
                     send: 'Send',
+                    alreadySent: 'Message Sent',
+                    loading: 'Loading...',
                     alert: {
                         title: "Thanks!",
                         message: 'We received your inquiry, we will get back to you soon.',
                         button: 'okay',
                         error: 'Error!',
-                        errorMessage: 'Some details may be missing...'
+                        errorMessage: 'Some details may be missing...',
+                        errorMessage2: `You can't send more than one inquiry!`
                     }
                 }
             }
@@ -101,7 +104,7 @@ const Lang = [
                 blocks: [
                     {
                         icon: faHashtag,
-                        num: '7+',
+                        num: '5+',
                         title: 'ניסיון' ,
                         text: 'שנות ניסיון'
                     },
@@ -145,12 +148,15 @@ const Lang = [
                     message: 'הודעה',
                     placeholder: 'סיבת הפנייה, במידה ואתם מעוניינים לקבל הצעת מחיר, יש לרשום את פרטי האתר, שימוש ודוגמאות רלוונטיות',
                     send: 'אישור ושליחה',
+                    alreadySent: 'ההודעה נשלחה',
+                    loading: 'אנא המתן...',
                     alert: {
                         title: "!הפנייה נשלחה",
                         message: '.קיבלנו את הפנייה שלך, אנו נחזור אליך בקרוב',
                         button: 'אישור',
                         error: '!שגיאה',
-                        errorMessage: '...יתכן כי חלק מהפרטים חסרים'
+                        errorMessage: '...יתכן שחלק מהפרטים חסרים',
+                        errorMessage2: '!לא ניתן לשלוח יותר מפנייה אחת'
                     }
                 }
             }

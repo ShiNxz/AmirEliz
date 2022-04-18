@@ -4,7 +4,7 @@
 @tailwind utilities;
 
 * {
-  transition-property: opacity,transform,background,color,box-shadow,height,padding,letter-spacing!important;
+  transition-property: opacity,transform,background,color,box-shadow,height,padding,letter-spacing,text-decoration!important;
 }
 
 html {

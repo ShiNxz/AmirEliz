@@ -2,6 +2,8 @@ import { Client, Intents, MessageEmbed } from 'discord.js'
 import express from 'express'
 import cors from 'cors'
 import twilio from 'twilio'
+import { readFileSync } from 'fs'
+import { createServer } from 'https'
 import dotenv from 'dotenv'
 dotenv.config()
 
@@ -21,8 +23,8 @@ App.post('/contact', async (req, res) => {
 
     twilioClient.messages 
         .create({   
-            body: `-\n\n\nNew message:\nName: ${name}\nEmail: ${email}\nMessage: ${message}`,  
-            messagingServiceSid: process.env.SERVICE_SID,      
+            body: `-------\n\n\nNew message:\n• Name: ${name}\n• Email: ${email}\n• Message: ${message}`,  
+            messagingServiceSid: process.env.SERVICE_SID,
             to: process.env.PHONE
         }) 
         .done()
@@ -33,8 +35,13 @@ App.post('/contact', async (req, res) => {
     res.status(200).json({ success: true })
 })
 
-const twilioClient = twilio('AC67da380081a93954c524fdd4f5067b24', '11000ffb69608d488337a91ff7e85ab0');
+const twilioClient = twilio(process.env.SID, process.env.AUTH);
 const discordClient = new Client({ intents: [Intents.FLAGS.GUILDS, 'GUILD_VOICE_STATES'] })
 discordClient.login(process.env.TOKEN)
 
-App.listen(process.env.API_PORT || 5000)
+const server = createServer({
+    cert: readFileSync("./cert/server.cert"),
+    key: readFileSync("./cert/server.key")
+}, App);
+
+server.listen(process.env.API_PORT || 9000)

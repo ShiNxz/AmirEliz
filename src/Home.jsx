@@ -2,6 +2,7 @@
 import { useContext } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Context } from './Context'
+import './Background.scss'
 
 // Json
 import techs from './Techs'
@@ -17,15 +18,44 @@ import Feature from './Components/Feature'
 import Contact from './Components/Contact'
 
 // Assets
-import me from './Assets/me.jpg'
+import abstract from './Assets/abstract.png'
 import ContactForm from './Components/ContactForm'
+import { useEffect, useState } from 'react'
 
 const Index = () => {
     const { lang, texts } = useContext(Context)
 
+    const [isVisible, setIsVisible] = useState(true)
+
+    useEffect(() => {   
+        window.addEventListener("scroll", listenToScroll)
+        return () => 
+           window.removeEventListener("scroll", listenToScroll);
+    }, [])
+
+    const listenToScroll = () => {
+        let heightToHideFrom = 200
+        const winScroll = document.body.scrollTop || 
+            document.documentElement.scrollTop
+           
+        if (winScroll > heightToHideFrom) { 
+            isVisible && setIsVisible(false);
+        } else {
+            setIsVisible(true);
+        }  
+    }
+
     return (
         <>
+            <div onScroll={(s) => console.log(s)} className={`area duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0' }`}>
+                <ul className="circles">
+                    {
+                        [...Array(10)].map((x, i) => <li key={i} className='bg-gray-900/10 dark:bg-gray-200/10'/>)
+                    }
+                </ul>
+            </div>
             <Block id="Main">
+                
                 <div className='py-24'>
                     <h1 data-aos="fade-up" data-aos-delay="100" className='text-md text-gray-900 dark:text-white my-0.5 duration-300'>{ texts.main.heading }</h1>
                     <h1 data-aos="fade-up" data-aos-delay="400" className='text-5xl text-gray-800 dark:text-white duration-300 font-medium'>{ texts.main.name }</h1>
@@ -41,8 +71,9 @@ const Index = () => {
                 <div className='p-6 flex flex-col lg:flex-row'>
                     <div className='h-auto md:w-1/2 hidden lg:block'>
                         <div data-aos="fade-up" className='relative h-full flex justify-center items-center'>
-                            <div className='rounded-2xl bg-gradient-to-r from-cyan2 via-cyan to-cyan2 shadow-xl -rotate-[5deg] absolute h-96 w-96 m-auto'/>
-                            <img src={me} className='rounded-2xl rotate-6 absolute shadow-xl h-96 w-96 m-auto' alt="" />
+                            {/* <div className='rounded-2xl bg-gradient-to-r from-cyan2 via-cyan to-cyan2 shadow-xl -rotate-[5deg] absolute h-96 w-96 m-auto'/>
+                            </div> */}
+                            <img src={abstract} width='600' className='m-auto' alt="" />
                         </div>
                     </div>
                     <div className='h-fit lg:w-1/2 text-left rtl:text-right'>
@@ -77,7 +108,7 @@ const Index = () => {
                                     <div className='grid grid-cols-1 lg:grid-cols-3 gap-2 text-left px-43'>
                                         {
                                             tech.techs.map((t, i) =>
-                                                <div data-aos="fade-up" data-aos-anchor='#tech' data-aos-offset='800' data-aos-delay={(index * 1500) + 300 + i * 150} key={t.name} className='w-fit my-2'>
+                                                <div data-aos="fade-up" data-aos-anchor='#tech' data-aos-offset='650' data-aos-delay={(index * 1500) + 300 + i * 150} key={t.name} className='w-fit my-2'>
                                                     <FontAwesomeIcon className='text-cyan mx-2' icon={t.icon} />
                                                     <span className='text-gray-800 dark:text-white text-sm'>{t.name}, <span className='text-gray-500 dark:text-gray-300 text-xs'>{t.exp}</span></span>
                                                 </div>
@@ -95,7 +126,7 @@ const Index = () => {
             <Block id="contact">
                 <div className='p-6 flex flex-col md:flex-row'>
 
-                    <div className='h-auto md:w-1/2 px-8 '>
+                    <div className='h-auto md:w-1/2 px-8'>
                         <div style={{justifyItems: 'right'}} className='grid grid-cols-1 sm:grid-cols-2 gap-5'>
                             {
                                 contacts.map((c, i) => <Contact dataAos="fade-up" dataAosDelay={i * 150} key={c.id} icon={c.icon} title={texts.contact[c.id]} text={<span>{c.text}</span>} link={c.link} />)

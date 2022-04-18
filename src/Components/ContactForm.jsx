@@ -13,13 +13,26 @@ const ContactForm = () => {
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [message, setMessage] = useState("")
+    const [canMessage, setCanMessage] = useState(localStorage.getItem("sentMessage") ? false : true)
+    const [loading, setLoading] = useState(false)
     
     const handleForm = async () => {
-        if(name.length < 2 || email.length < 5 || message.length < 3) return Swal.fire({
+        setLoading(true)
+		if(localStorage.getItem("sentMessage"))  {
+            setLoading(false)
+            return Swal.fire({
+            title: texts.contact.form.alert.error,
+            text: texts.contact.form.alert.errorMessage2,
+            icon: 'error'
+        })}
+
+        if(name.length < 2 || email.length < 5 || message.length < 3) {
+            setLoading(false)
+            return Swal.fire({
             title: texts.contact.form.alert.error,
             text: texts.contact.form.alert.errorMessage,
             icon: 'error'
-        })
+        })}
 
         const { success } = await Axios('contact', 'POST', { name, email, message })
 
@@ -31,14 +44,19 @@ const ContactForm = () => {
         }) : Swal.fire({
             icon: 'error'
         })
+
+        setLoading(false)
+        if(!success) return;
+		localStorage.setItem("sentMessage", 'true')
+        setCanMessage(false)
     }
 
     return (
-        <div className='h-auto md:w-1/2 px-8 ltr:text-left rtl:text-right'>
-            <FormInput dataAos="fade-up" dataAosDelay='800' className='w-2/5' id='name' type='text' onChange={setName} name={texts.contact.form.name} />
-            <FormInput dataAos="fade-up" dataAosDelay='1000' className='w-3/5' id='email' type='email' onChange={setEmail} name={texts.contact.form.email} />
-            <TextArea dataAos="fade-up" dataAosDelay='1200' className='w-4/5' id='message' onChange={setMessage} name={texts.contact.form.message} placeholder={texts.contact.form.placeholder}/>
-            <Button dataAos="fade-up" dataAosDelay='1500' dataAosAnchor='#contact' onClick={handleForm} className='mt-5'>{texts.contact.form.send}</Button>
+        <div className='h-auto w-full md:w-1/2 px-8 ltr:text-left rtl:text-right mt-12 md:mt-0'>
+            <FormInput disabled={!canMessage || loading} dataAos="fade-up" dataAosDelay='800' className='w-full md:w-2/5' id='name' type='text' onChange={setName} name={texts.contact.form.name} />
+            <FormInput disabled={!canMessage || loading} dataAos="fade-up" dataAosDelay='1000' className='ww-full md:w-3/5' id='email' type='email' onChange={setEmail} name={texts.contact.form.email} />
+            <TextArea disabled={!canMessage || loading} dataAos="fade-up" dataAosDelay='1200' className='w-full md:w-4/5' id='message' onChange={setMessage} name={texts.contact.form.message} placeholder={texts.contact.form.placeholder}/>
+            <Button className='flex flex-row items-center content-center justify-center mt-5 w-full md:w-auto' disabled={!canMessage || loading} loading={loading} dataAos="fade-up" dataAosDelay='1500' dataAosAnchor='#contact' onClick={handleForm}>{canMessage ? loading ? texts.contact.form.loading : texts.contact.form.send : texts.contact.form.alreadySent}</Button>
         </div>
     )
 }

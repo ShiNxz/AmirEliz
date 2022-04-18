@@ -18,17 +18,17 @@ const techs = [
             {
                 name: 'Scss / Sass',
                 icon: faSass,
-                exp: 'Experienced'
+                exp: 'Entry'
             },
             {
                 name: 'JavaScript',
                 icon: faJsSquare,
-                exp: 'Experienced'
+                exp: 'Expert'
             },
             {
                 name: 'jQuery',
                 icon: faJsSquare,
-                exp: 'Experienced'
+                exp: 'Intermediate'
             },
             {
                 name: 'Ajax',
@@ -43,7 +43,7 @@ const techs = [
             {
                 name: 'Next.js',
                 icon: faAtom,
-                exp: 'Experienced'
+                exp: 'Entry'
             },
             {
                 name: 'Bootstrap',
@@ -53,7 +53,7 @@ const techs = [
             {
                 name: 'Material-UI',
                 icon: faCode,
-                exp: 'Experienced'
+                exp: 'Intermediate'
             },
             {
                 name: 'Socket.io',
@@ -73,7 +73,7 @@ const techs = [
             {
                 name: 'Node.js',
                 icon: faNodeJs,
-                exp: 'Experienced'
+                exp: 'Proficient'
             },
             {
                 name: 'Express.js',
@@ -88,7 +88,7 @@ const techs = [
             {
                 name: 'MongoDB',
                 icon: faDatabase,
-                exp: 'Experienced'
+                exp: 'Intermediate'
             },
         ]
     }

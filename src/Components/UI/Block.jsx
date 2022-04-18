@@ -1,7 +1,7 @@
 import { useContext } from "react"
 import { Context } from "../../Context"
 
-const BlockTitle = ({ title }) => <h1 data-aos="fade-up" className='text-lg text-cyan'>{ title }</h1>
+const BlockTitle = ({ title }) => <h1 data-aos="fade-up" className='text-lg font-semibold text-cyan'>{ title }</h1>
 
 const Block = ({ children, id }) => {
     const { texts } = useContext(Context)

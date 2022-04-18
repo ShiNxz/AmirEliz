@@ -1,6 +1,6 @@
 const config = {
     axios: {
-        baseURI: 'http://localhost:5000',
+        baseURI: 'https://api.startapp.org.il:9000',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'

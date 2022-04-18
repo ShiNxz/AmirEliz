@@ -7,7 +7,12 @@ import { Context } from '../../Context'
 
 const NavBar = () => {
     const [minimize, setMinimize] = useState(true)
-    const [darkMode, setDarkMode] = useState(localStorage.getItem("darkMode") || 'true')
+    const [darkMode, setDarkMode] = useState(
+        localStorage.getItem("darkMode") ||
+        (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches) ||
+        'false'
+    )
+
     const { texts } = useContext(Context)
 
     useEffect(() => {
@@ -22,14 +27,14 @@ const NavBar = () => {
     return (
         <nav className="bg-cyan2 duration-300 dark:bg-primary-dark shadow-sm z-40 fixed w-full h-14 top-0">
             <div className="max-w-7xl mx-auto px-8 h-full">
-                <div className="flex items-center justify-between py-2 content-center h-full">
+                <div className="flex items-center justify-between py-2 content-center h-full float-left rtl:float-right md:!float-none">
                     <div className="flex items-center">
                         <div className="hidden md:flex ml-10 items-baseline space-x-4">
-                            <a className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium" href='#Main'>
+                            <a className="text-gray-200 hover:text-white block px-3 py-2 rounded-md text-base font-medium" href='#Main'>
                                 <FontAwesomeIcon className="mr-2" icon={faHouse} />
                             </a>
                             {
-                                links.map((l, i) => <a key={i}  className="text-gray-300 duration-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium" href={l.id}>{texts.links[l.id]}</a>)
+                                links.map((l, i) => <a key={i}  className="text-gray-200 duration-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium underline decoration-2 decoration-gray-100/0 hover:decoration-gray-200" href={l.id}>{texts.links[l.id]}</a>)
                             }
                         </div>
                     </div>
@@ -57,12 +62,12 @@ const NavBar = () => {
                 </div>
             </div>
 
-            <div className={`md:hidden duration-300 px-2 pt-2 pb-3 space-y-1 sm:px-3 overflow-hidden backdrop-blur-sm bg-indigo-900/80 ${minimize ? '!h-0 !py-0' : 'h-64'}`}>
-                <a className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium" href='#Main'>
+            <div className={`md:hidden duration-300 px-2 pt-2 pb-3 space-y-1 sm:px-3 overflow-hidden backdrop-blur-sm bg-cyan2/80 dark:bg-indigo-900/80 ${minimize ? '!h-0 !py-0' : 'h-64'}`}>
+                <a className="text-gray-200 hover:text-white block px-3 py-2 rounded-md text-base font-medium" href='#Main'>
                     <FontAwesomeIcon className="mr-2" icon={faHouse} />
                 </a>
                 {
-                    links.map((l, i) => <a key={i} className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium" href={l.id}>{texts.links[l.id]}</a>)
+                    links.map((l, i) => <a key={i} className="text-gray-200 hover:text-white block px-3 py-2 rounded-md text-base font-medium" href={l.id}>{texts.links[l.id]}</a>)
                 }
             </div>
         </nav>
