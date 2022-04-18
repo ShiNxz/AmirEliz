@@ -29,8 +29,8 @@ const Index = () => {
 
     useEffect(() => {   
         window.addEventListener("scroll", listenToScroll)
-        return () => 
-           window.removeEventListener("scroll", listenToScroll);
+        return () => window.removeEventListener("scroll", listenToScroll);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const listenToScroll = () => {
@@ -58,9 +58,9 @@ const Index = () => {
                 
                 <div className='py-24'>
                     <h1 data-aos="fade-up" data-aos-delay="100" className='text-md text-gray-900 dark:text-white my-0.5 duration-300'>{ texts.main.heading }</h1>
-                    <h1 data-aos="fade-up" data-aos-delay="400" className='text-5xl text-gray-800 dark:text-white duration-300 font-medium'>{ texts.main.name }</h1>
+                    <div data-aos="fade-up" data-aos-delay="400"><h1 className='text-5xl text-gray-800 dark:text-white duration-300 font-medium hover:tracking-widest'>{ texts.main.name }</h1></div>
                     <h1 data-aos="fade-up" data-aos-delay="700" className='text-sm text-gray-900 dark:text-white my-1 duration-300'>{ texts.main.title }</h1>
-                    <div className='my-5'>
+                    <div className='my-5 inline-flex'>
                         <Link dataAos="fade-up" dataAosDelay="1400" link="#AboutMe" className='mx-1'>{ texts.links['#AboutMe'] }</Link>
                         <Link dataAos="fade-up" dataAosDelay="1500" outline link="#contact" className='mx-1'>{ texts.links['#letstalk'] }</Link>
                     </div>
@@ -83,9 +83,11 @@ const Index = () => {
                         }
                         </div>
                         <p data-aos="fade-up" data-aos-delay="1100" data-aos-offset="130" className='text-gray-800 dark:text-gray-300 p-2 mb-12' style={{whiteSpace: 'break-spaces'}}>{texts.about_me.text.join('\n')}</p>
-                        <Link dataAos="fade-up" dataAosDelay="1300" dataAosOffset='120' outline link="#projects" className='m-2'>{ texts.links['#projects'] }</Link>
-                        <Link dataAos="fade-up" dataAosDelay="1500" dataAosOffset='120' outline link="#tech" className='m-2'>{ texts.links['#tech'] }</Link>
-                        <Link dataAos="fade-up" dataAosDelay="1700" dataAosOffset='120' outline link="#contact" className='m-2'>{ texts.links['#letstalk'] }</Link>
+                        <div className='inline-flex'>
+                            <Link dataAos="fade-up" dataAosDelay="1300" dataAosOffset='120' outline link="#projects" className='m-2'>{ texts.links['#projects'] }</Link>
+                            <Link dataAos="fade-up" dataAosDelay="1500" dataAosOffset='120' outline link="#tech" className='m-2'>{ texts.links['#tech'] }</Link>
+                            <Link dataAos="fade-up" dataAosDelay="1700" dataAosOffset='120' outline link="#contact" className='m-2'>{ texts.links['#letstalk'] }</Link>
+                        </div>
                     </div>
                 </div>
             </Block>
@@ -93,7 +95,7 @@ const Index = () => {
             <Block id="projects">
                 <div className='p-6 h-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-12'>
                     {
-                        projects.map((p, index) => <Project dataAos="fade-up" dataAosDelay={index*350} key={p.title} title={p.title} description={p.description[lang]} image={p.image} techs={p.techs} links={p.links} />)
+                        projects.map((p, index) => <Project dataAos="fade-up" dataAosDelay={index*250} key={p.title} title={p.title} description={p.description[lang]} image={p.image} techs={p.techs} links={p.links} />)
                     }
                 </div>
             </Block>
